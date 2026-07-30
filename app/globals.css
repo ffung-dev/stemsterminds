@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette (light mode) */
+  --cream: #fff6e6;
+  --decoration: #ffeaab;
+  --button: #fbcd76;
+  --button-hover: #f7bd52;
+  --ink: #3f3939;
+  --ink-soft: #6b6262;
+  --coral: #f85a52;
+  --coral-hover: #e6473f;
+  --teal: #a2d9de;
+  --teal-soft: #cdeaed;
+
+  --surface: #ffffff;
+  --surface-soft: var(--cream);
+  --border-soft: #f0e2c4;
+}
+
+.dark {
+  /* Brand palette (dark mode) — same accents, warm charcoal surfaces */
+  --cream: #221d1a;
+  --decoration: #3a2f22;
+  --button: #fbcd76;
+  --button-hover: #ffd98f;
+  --ink: #f5eede;
+  --ink-soft: #cfc3b2;
+  --coral: #ff756d;
+  --coral-hover: #ff8f88;
+  --teal: #7fc3ca;
+  --teal-soft: #2c3f41;
+
+  --surface: #2a2420;
+  --surface-soft: #26211d;
+  --border-soft: #40372e;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+
+  --color-cream: var(--cream);
+  --color-decoration: var(--decoration);
+  --color-button: var(--button);
+  --color-button-hover: var(--button-hover);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-coral: var(--coral);
+  --color-coral-hover: var(--coral-hover);
+  --color-teal: var(--teal);
+  --color-teal-soft: var(--teal-soft);
+  --color-surface: var(--surface);
+  --color-surface-soft: var(--surface-soft);
+  --color-border-soft: var(--border-soft);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: var(--teal);
+  color: var(--ink);
+}
+
+/* Soft brand gradient used behind hero / feature sections */
+.brand-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--cream) 0%,
+    var(--decoration) 45%,
+    var(--teal-soft) 100%
+  );
+}
+
+.brand-gradient-subtle {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--surface) 100%);
+}
+
+/* Scrollbar styling to match brand */
+* {
+  scrollbar-color: var(--button) transparent;
 }
