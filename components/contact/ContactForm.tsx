@@ -3,7 +3,7 @@
 import { useActionState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { submitContactForm, type ContactFormState } from "@/app/contact/actions";
+import { submitContactForm, type ContactFormState } from "@/app/(site)/contact/actions";
 import { ButtonAsButton } from "@/components/ui/Button";
 import { cx } from "@/lib/utils";
 
