@@ -71,7 +71,7 @@ export function BlogExplorer({ posts }: { posts: BlogPost[] }) {
 
       {filtered.length === 0 ? (
         <p className="mt-16 text-center text-ink-soft" data-testid="blog-empty">
-          No articles match your filters.
+          {posts.length === 0 ? "No articles yet — check back soon!" : "No articles match your filters."}
         </p>
       ) : (
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
