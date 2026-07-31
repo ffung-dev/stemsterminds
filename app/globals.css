@@ -25,7 +25,8 @@
   --surface-soft: var(--cream);
   --border-soft: #f0e2c4;
 
-  /* Third stop for .brand-gradient. */
+  /* .brand-gradient stops. */
+  --gradient-mid: var(--button);
   --gradient-end: var(--teal-soft);
 }
 
@@ -48,6 +49,11 @@
   --surface-soft: #26211d;
   --border-soft: #40372e;
 
+  /* --button itself stays bright yellow in dark mode (buttons need to keep
+     reading as buttons), but that's too bright as a big gradient field behind
+     light dark-mode text. Mute it toward the dark background instead — still
+     unmistakably the brand yellow, just dark-mode-legible. */
+  --gradient-mid: color-mix(in srgb, var(--button) 45%, var(--cream) 55%);
   /* Warm ember red instead of teal, so the gradient stays yellow/red only. */
   --gradient-end: #4a2620;
 }
@@ -97,7 +103,7 @@ body {
   background: linear-gradient(
     135deg,
     var(--cream) 0%,
-    var(--button) 50%,
+    var(--gradient-mid) 50%,
     var(--gradient-end) 100%
   );
 }
