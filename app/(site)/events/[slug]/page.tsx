@@ -57,7 +57,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
         <RoundedImage image={event.headerImage} alt={event.title} className="aspect-[16/9] w-full" priority />
 
-        <h1 className="mt-8 font-display text-3xl font-bold text-ink sm:text-4xl">{event.title}</h1>
+        <h1 className="mt-8 font-title text-3xl font-bold text-ink sm:text-4xl">{event.title}</h1>
         <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
           <span className="flex items-center gap-1.5">
             <CalendarDays className="h-4 w-4" aria-hidden="true" />
@@ -79,7 +79,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
         {event.schedule.length > 0 && (
           <section className="mt-10">
-            <h2 className="font-display text-xl font-bold text-ink">Schedule</h2>
+            <h2 className="font-header text-xl font-bold text-ink">Schedule</h2>
             <ol className="mt-4 space-y-4 border-l-2 border-decoration pl-5">
               {event.schedule.map((item) => (
                 <li key={item._key}>
@@ -94,7 +94,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
         {event.speakers.length > 0 && (
           <section className="mt-10">
-            <h2 className="font-display text-xl font-bold text-ink">Speakers</h2>
+            <h2 className="font-header text-xl font-bold text-ink">Speakers</h2>
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {event.speakers.map((speaker, index) => (
                 <div
@@ -114,7 +114,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
 
         {event.gallery.length > 0 && (
           <section className="mt-10">
-            <h2 className="font-display text-xl font-bold text-ink">Gallery</h2>
+            <h2 className="font-header text-xl font-bold text-ink">Gallery</h2>
             <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
               {event.gallery.map((image, index) => (
                 <RoundedImage key={index} image={image} alt={image.alt} seed={index} className="aspect-square w-full" />

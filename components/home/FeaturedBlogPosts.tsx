@@ -33,7 +33,7 @@ export function FeaturedBlogPosts({ posts }: { posts: BlogPost[] }) {
               <p className="text-xs font-semibold uppercase tracking-wide text-coral">
                 {formatDateShort(post.datePosted)}
               </p>
-              <h3 className="mt-2 font-display text-lg font-bold text-ink">
+              <h3 className="mt-2 font-header text-lg font-bold text-ink">
                 <Link href={`/blog/${post.slug}`} className="hover:text-coral">
                   {post.title}
                 </Link>

@@ -30,7 +30,7 @@ export default async function AboutPage() {
             <PortableTextRenderer value={about.description} />
           </div>
           <Card className="h-fit bg-teal-soft">
-            <h2 className="font-display text-xl font-bold text-ink">{about.visionTitle}</h2>
+            <h2 className="font-header text-xl font-bold text-ink">{about.visionTitle}</h2>
             <p className="mt-3 text-ink-soft">{about.visionBody}</p>
           </Card>
         </Container>

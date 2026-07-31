@@ -57,7 +57,7 @@ export default async function VolunteerPage() {
 
       <section className="brand-gradient py-16 sm:py-20">
         <Container className="text-center">
-          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">{volunteer.applicationCtaHeading}</h2>
+          <h2 className="font-header text-3xl font-bold text-ink sm:text-4xl">{volunteer.applicationCtaHeading}</h2>
           <p className="mx-auto mt-3 max-w-xl text-lg text-ink-soft">{volunteer.applicationCtaText}</p>
           <div className="mt-8">
             <Button href={volunteer.applicationLink} size="lg">

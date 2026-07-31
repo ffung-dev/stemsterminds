@@ -12,8 +12,8 @@ type VideoBlockValue = { url: string };
 
 const components: PortableTextComponents = {
   block: {
-    h2: ({ children }) => <h2 className="mb-3 mt-8 font-display text-2xl font-bold text-ink">{children}</h2>,
-    h3: ({ children }) => <h3 className="mb-2 mt-6 font-display text-xl font-bold text-ink">{children}</h3>,
+    h2: ({ children }) => <h2 className="mb-3 mt-8 font-header text-2xl font-bold text-ink">{children}</h2>,
+    h3: ({ children }) => <h3 className="mb-2 mt-6 font-header text-xl font-bold text-ink">{children}</h3>,
     normal: ({ children }) => <p className="mb-4 leading-relaxed text-ink-soft">{children}</p>,
     blockquote: ({ children }) => (
       <blockquote className="my-4 border-l-4 border-coral pl-4 italic text-ink-soft">{children}</blockquote>

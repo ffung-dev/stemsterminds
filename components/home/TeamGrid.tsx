@@ -19,7 +19,7 @@ export function TeamGrid({ team }: { team: TeamMember[] }) {
           {team.map((member, index) => (
             <Card key={member._id}>
               <RoundedImage image={member.photo} alt={member.name} seed={index} className="aspect-square w-full" />
-              <h3 className="mt-4 font-display text-lg font-bold text-ink">{member.name}</h3>
+              <h3 className="mt-4 font-header text-lg font-bold text-ink">{member.name}</h3>
               <p className="text-sm font-semibold text-coral">{member.role}</p>
               <p className="mt-2 text-sm text-ink-soft">{member.bio}</p>
             </Card>

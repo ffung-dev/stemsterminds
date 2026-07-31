@@ -8,7 +8,7 @@ export function RelatedPosts({ posts }: { posts: BlogPost[] }) {
 
   return (
     <section className="mt-14 border-t border-border-soft pt-10">
-      <h2 className="font-display text-xl font-bold text-ink">Related Posts</h2>
+      <h2 className="font-header text-xl font-bold text-ink">Related Posts</h2>
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
         {posts.map((post, index) => (
           <Link key={post._id} href={`/blog/${post.slug}`} className="group">

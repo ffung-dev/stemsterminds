@@ -40,7 +40,7 @@ export default async function ContactPage() {
 
           <div className="space-y-6 lg:col-span-2">
             <Card>
-              <h2 className="font-display text-lg font-bold text-ink">Get in Touch</h2>
+              <h2 className="font-header text-lg font-bold text-ink">Get in Touch</h2>
               <a
                 href={`mailto:${siteSettings.contactEmail}`}
                 className="mt-3 flex items-center gap-2 text-sm text-ink-soft hover:text-coral"
@@ -57,7 +57,7 @@ export default async function ContactPage() {
             </Card>
 
             <Card>
-              <h2 className="font-display text-lg font-bold text-ink">Follow Along</h2>
+              <h2 className="font-header text-lg font-bold text-ink">Follow Along</h2>
               <div className="mt-3 flex flex-wrap gap-3">
                 {siteSettings.socialLinks.map((link) => (
                   <a
@@ -80,7 +80,7 @@ export default async function ContactPage() {
       {faqPreview.length > 0 && (
         <section className="bg-surface-soft py-16 sm:py-20">
           <Container className="mx-auto max-w-3xl">
-            <h2 className="font-display text-2xl font-bold text-ink">Frequently Asked Questions</h2>
+            <h2 className="font-header text-2xl font-bold text-ink">Frequently Asked Questions</h2>
             <div className="mt-6">
               <Accordion
                 items={faqPreview.map((faq) => ({ key: faq._key, question: faq.question, answer: faq.answer }))}

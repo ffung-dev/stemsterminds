@@ -41,7 +41,7 @@ export function EventCard({ event, index }: { event: EventItem; index: number })
       >
         {STATUS_LABELS[event.registrationStatus]}
       </span>
-      <h3 className="mt-3 font-display text-lg font-bold text-ink">
+      <h3 className="mt-3 font-header text-lg font-bold text-ink">
         <Link href={`/events/${event.slug}`} className="hover:text-coral">
           {event.title}
         </Link>

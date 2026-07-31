@@ -10,7 +10,7 @@ export function Logo({ organizationName }: { organizationName: string }) {
       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-ink bg-button">
         <Brain className="h-5 w-5 text-ink" aria-hidden="true" strokeWidth={2} />
       </span>
-      <span className="font-display text-lg font-bold text-ink">{organizationName}</span>
+      <span className="font-header text-lg font-bold text-ink">{organizationName}</span>
     </Link>
   );
 }

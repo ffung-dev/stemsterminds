@@ -19,7 +19,7 @@ export function InfoCardGrid({ items, columns = 3 }: { items: InfoCardItem[]; co
     >
       {items.map((item) => (
         <Card key={item.key}>
-          <h3 className="font-display text-lg font-bold text-ink">{item.title}</h3>
+          <h3 className="font-header text-lg font-bold text-ink">{item.title}</h3>
           <p className="mt-2 text-sm text-ink-soft">{item.description}</p>
         </Card>
       ))}

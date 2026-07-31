@@ -31,7 +31,7 @@ export function Hero({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-display text-5xl font-bold text-ink sm:text-6xl md:text-7xl"
+          className="font-title text-5xl font-bold text-ink sm:text-6xl md:text-7xl"
         >
           {title}
         </motion.h1>

@@ -23,7 +23,7 @@ export function Footer({
             <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-button">
               <Brain className="h-4 w-4 text-ink" aria-hidden="true" />
             </span>
-            <span className="font-display text-lg font-bold text-ink">{siteSettings.organizationName}</span>
+            <span className="font-header text-lg font-bold text-ink">{siteSettings.organizationName}</span>
           </div>
           <p className="max-w-sm text-sm text-ink-soft">{siteSettings.footerText || siteSettings.missionStatement}</p>
         </div>

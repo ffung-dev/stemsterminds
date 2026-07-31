@@ -47,7 +47,7 @@ export function FunFactPanel({
             <div className="brand-gradient rounded-r-3xl border border-l-0 border-border-soft p-5 shadow-lg">
               <div className="mb-3 flex items-center gap-2 text-ink">
                 <Lightbulb className="h-5 w-5 text-coral" aria-hidden="true" />
-                <span className="font-display text-sm font-bold uppercase tracking-wide">Did You Know?</span>
+                <span className="font-header text-sm font-bold uppercase tracking-wide">Did You Know?</span>
               </div>
               <div className="min-h-20">
                 <AnimatePresence mode="wait">

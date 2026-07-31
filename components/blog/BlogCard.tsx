@@ -24,7 +24,7 @@ export function BlogCard({ post, index }: { post: BlogPost; index: number }) {
           {post.category.title}
         </span>
       )}
-      <h3 className="mt-3 font-display text-lg font-bold text-ink">
+      <h3 className="mt-3 font-header text-lg font-bold text-ink">
         <Link href={`/blog/${post.slug}`} className="hover:text-coral">
           {post.title}
         </Link>

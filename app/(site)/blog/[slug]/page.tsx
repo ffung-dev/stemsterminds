@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <RoundedImage image={post.heroImage} alt={post.title} className="aspect-[16/9] w-full" priority />
 
-        <h1 className="mt-8 font-display text-3xl font-bold text-ink sm:text-4xl">{post.title}</h1>
+        <h1 className="mt-8 font-title text-3xl font-bold text-ink sm:text-4xl">{post.title}</h1>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-ink-soft">
           <span>By {post.author.name}</span>
