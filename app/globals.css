@@ -36,10 +36,8 @@
   --decoration: #3a2f22;
   --button: #fbcd76;
   --button-hover: #ffd98f;
-  /* Warm tan variations of #513830 instead of a stark near-white, so text
-     contrast against the dark background reads softer, not harsh. */
-  --ink: #dfcac3;
-  --ink-soft: #bd9a8f;
+  --ink: #fff6e6;
+  --ink-soft: #bdb5a9;
   --coral: #ff756d;
   --coral-hover: #ff8f88;
   --teal: #7fc3ca;
