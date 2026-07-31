@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 
 export default function NotFound() {
   return (
-    <section className="brand-gradient flex flex-1 items-center py-24">
+    <section className="flex flex-1 items-center bg-cream py-24">
       <Container className="text-center">
         <span className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-2 border-ink bg-button">
           <Rocket className="h-9 w-9 text-button-ink" aria-hidden="true" />
