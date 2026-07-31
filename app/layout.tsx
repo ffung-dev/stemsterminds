@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Fredoka, Geist } from "next/font/google";
+import { Elsie, Faculty_Glyphic, Geist } from "next/font/google";
 
-import { Footer } from "@/components/footer/Footer";
-import { FunFactPanel } from "@/components/fun-fact/FunFactPanel";
-import { NavBar } from "@/components/nav/NavBar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ScrollToTop } from "@/components/ui/ScrollToTop";
-import { getFooter, getNavigation, getSiteSettings } from "@/lib/sanity/fetch";
+import { getSiteSettings } from "@/lib/sanity/fetch";
 
 import "./globals.css";
 
@@ -15,10 +11,16 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const fredoka = Fredoka({
-  variable: "--font-display",
+const elsie = Elsie({
+  variable: "--font-title",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "900"],
+});
+
+const facultyGlyphic = Faculty_Glyphic({
+  variable: "--font-header",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -47,39 +49,23 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [siteSettings, navigation, footer] = await Promise.all([
-    getSiteSettings(),
-    getNavigation(),
-    getFooter(),
-  ]);
-
   return (
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${fredoka.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${elsie.variable} ${facultyGlyphic.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-cream text-ink">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-button focus:px-4 focus:py-2 focus:text-ink focus:shadow-lg"
-          >
-            Skip to content
-          </a>
-          <NavBar items={navigation} organizationName={siteSettings.organizationName} />
-          <FunFactPanel facts={siteSettings.funFacts} socialLinks={siteSettings.socialLinks} />
-          <main id="main-content" className="flex-1">
-            {children}
-          </main>
-          <Footer footer={footer} siteSettings={siteSettings} />
-          <ScrollToTop />
+        {/* Default to light on first visit regardless of OS preference; the
+            toggle can still switch to dark, which next-themes persists. */}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+          {children}
         </ThemeProvider>
       </body>
     </html>
