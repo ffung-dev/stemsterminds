@@ -23,7 +23,7 @@ export default async function SiteLayout({
       >
         Skip to content
       </a>
-      <NavBar items={navigation} organizationName={siteSettings.organizationName} />
+      <NavBar items={navigation} organizationName={siteSettings.organizationName} logo={siteSettings.logo} />
       <FunFactPanel facts={siteSettings.funFacts} socialLinks={siteSettings.socialLinks} />
       <main id="main-content" className="flex-1">
         {children}
