@@ -8,8 +8,10 @@
   --decoration: #ffeaab;
   --button: #fbcd76;
   --button-hover: #f7bd52;
-  --ink: #3f3939;
-  --ink-soft: #6b6262;
+  /* Text colors: variations of brand brown #513830, lightened so body copy
+     doesn't read too dark/heavy against the cream background. */
+  --ink: #67473c;
+  --ink-soft: #986c5d;
   --coral: #f85a52;
   --coral-hover: #e6473f;
   --teal: #a2d9de;
@@ -26,8 +28,10 @@
   --decoration: #3a2f22;
   --button: #fbcd76;
   --button-hover: #ffd98f;
-  --ink: #f5eede;
-  --ink-soft: #cfc3b2;
+  /* Warm tan variations of #513830 instead of a stark near-white, so text
+     contrast against the dark background reads softer, not harsh. */
+  --ink: #dfcac3;
+  --ink-soft: #bd9a8f;
   --coral: #ff756d;
   --coral-hover: #ff8f88;
   --teal: #7fc3ca;
@@ -40,7 +44,8 @@
 
 @theme inline {
   --font-sans: var(--font-body);
-  --font-display: var(--font-display);
+  --font-title: var(--font-title);
+  --font-header: var(--font-header);
 
   --color-cream: var(--cream);
   --color-decoration: var(--decoration);
