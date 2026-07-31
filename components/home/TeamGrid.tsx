@@ -15,9 +15,9 @@ export function TeamGrid({ team }: { team: TeamMember[] }) {
           title="Meet the Team"
           description="The students and volunteers leading STEMsterMinds."
         />
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-6">
           {team.map((member, index) => (
-            <Card key={member._id}>
+            <Card key={member._id} className="w-full sm:w-64">
               <RoundedImage image={member.photo} alt={member.name} seed={index} className="aspect-square w-full" />
               <h3 className="mt-4 font-header text-lg font-bold text-ink">{member.name}</h3>
               <p className="text-sm font-semibold text-coral">{member.role}</p>
