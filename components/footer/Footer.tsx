@@ -22,12 +22,12 @@ export function Footer({
         <div className="sm:col-span-2 lg:col-span-2">
           <div className="mb-3 flex items-center gap-2.5">
             {siteSettings.logo?.url ? (
-              <span className="relative h-9 w-9 shrink-0">
+              <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-ink bg-surface">
                 <Image
                   src={siteSettings.logo.url}
                   alt={siteSettings.logo.alt || siteSettings.organizationName}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                 />
               </span>
             ) : (
