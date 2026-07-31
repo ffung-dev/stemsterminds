@@ -12,8 +12,13 @@ type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-button text-button-ink hover:bg-button-hover shadow-sm",
-  secondary: "bg-transparent text-ink border-2 border-ink/20 hover:border-coral hover:text-coral",
+  // Bordered with the fixed button-ink (not theme-switching --ink) so the
+  // edge stays a consistent dark outline even where a background gradient
+  // happens to match --button almost exactly.
+  primary: "bg-button text-button-ink border-2 border-button-ink hover:bg-button-hover shadow-md hover:shadow-lg",
+  // Solid-ish backdrop + full-strength border so this reads clearly against
+  // busy gradients, not just flat surfaces.
+  secondary: "bg-surface/90 text-ink border-2 border-ink hover:border-coral hover:text-coral shadow-sm hover:shadow-md",
   ghost: "bg-transparent text-ink hover:bg-decoration/60",
 };
 
