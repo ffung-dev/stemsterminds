@@ -24,6 +24,18 @@ export default async function VolunteerPage() {
     <>
       <PageHero title={volunteer.heroTitle} description={volunteer.introText} />
 
+      <section className="bg-surface-soft py-16 sm:py-20">
+        <Container className="text-center">
+          <h2 className="font-header text-3xl font-bold text-ink sm:text-4xl">{volunteer.applicationCtaHeading}</h2>
+          <p className="mx-auto mt-3 max-w-xl text-lg text-ink-soft">{volunteer.applicationCtaText}</p>
+          <div className="mt-8">
+            <Button href={volunteer.applicationLink} size="lg">
+              Apply Now
+            </Button>
+          </div>
+        </Container>
+      </section>
+
       <section className="py-16 sm:py-20">
         <Container>
           <SectionHeading eyebrow="Get Involved" title="Volunteer Opportunities" />
@@ -51,18 +63,6 @@ export default async function VolunteerPage() {
                 description: item.description,
               }))}
             />
-          </div>
-        </Container>
-      </section>
-
-      <section className="brand-gradient py-16 sm:py-20">
-        <Container className="text-center">
-          <h2 className="font-header text-3xl font-bold text-ink sm:text-4xl">{volunteer.applicationCtaHeading}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-lg text-ink-soft">{volunteer.applicationCtaText}</p>
-          <div className="mt-8">
-            <Button href={volunteer.applicationLink} size="lg">
-              Apply Now
-            </Button>
           </div>
         </Container>
       </section>
