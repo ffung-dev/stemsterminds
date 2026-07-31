@@ -7,13 +7,21 @@ import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
-import type { NavItem } from "@/lib/types";
+import type { ImageData, NavItem } from "@/lib/types";
 import { cx } from "@/lib/utils";
 
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 
-export function NavBar({ items, organizationName }: { items: NavItem[]; organizationName: string }) {
+export function NavBar({
+  items,
+  organizationName,
+  logo,
+}: {
+  items: NavItem[];
+  organizationName: string;
+  logo?: ImageData;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
@@ -56,7 +64,7 @@ export function NavBar({ items, organizationName }: { items: NavItem[]; organiza
   return (
     <header className="sticky top-0 z-50 border-b border-border-soft bg-cream/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
-        <Logo organizationName={organizationName} />
+        <Logo organizationName={organizationName} logo={logo} />
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {items.map((item) => {
