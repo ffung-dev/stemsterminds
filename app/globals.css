@@ -91,13 +91,14 @@ body {
   color: var(--ink);
 }
 
-/* Soft brand gradient used behind hero / feature sections */
+/* Soft brand gradient used behind hero / feature sections. Uses --button
+   (the brand's main, more saturated yellow) for a punchier middle stop. */
 .brand-gradient {
   background: linear-gradient(
     135deg,
     var(--cream) 0%,
-    var(--decoration) 45%,
-    var(--teal-soft) 100%
+    var(--button) 50%,
+    var(--gradient-end) 100%
   );
 }
 
