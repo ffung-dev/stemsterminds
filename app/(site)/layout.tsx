@@ -4,6 +4,12 @@ import { NavBar } from "@/components/nav/NavBar";
 import { ScrollToTop } from "@/components/ui/ScrollToTop";
 import { getFooter, getNavigation, getSiteSettings } from "@/lib/sanity/fetch";
 
+// Without this, these pages are fully static and only ever re-fetch Sanity
+// content at build time — edits made in Studio wouldn't show up on the
+// deployed site until the next deployment. This re-checks Sanity in the
+// background at most once every 30s per page, no redeploy required.
+export const revalidate = 30;
+
 export default async function SiteLayout({
   children,
 }: Readonly<{
