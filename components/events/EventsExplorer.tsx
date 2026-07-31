@@ -34,7 +34,7 @@ export function EventsExplorer({ upcoming, past }: { upcoming: EventItem[]; past
               data-testid={`events-tab-${key}`}
               className={cx(
                 "relative rounded-full px-5 py-2 text-sm font-semibold capitalize transition-colors",
-                tab === key ? "text-ink" : "text-ink-soft hover:text-ink"
+                tab === key ? "text-button-ink" : "text-ink-soft hover:text-ink"
               )}
             >
               {tab === key && (

@@ -21,7 +21,7 @@ export function Footer({
         <div className="sm:col-span-2 lg:col-span-2">
           <div className="mb-3 flex items-center gap-2.5">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink bg-button">
-              <Brain className="h-4 w-4 text-ink" aria-hidden="true" />
+              <Brain className="h-4 w-4 text-button-ink" aria-hidden="true" />
             </span>
             <span className="font-header text-lg font-bold text-ink">{siteSettings.organizationName}</span>
           </div>

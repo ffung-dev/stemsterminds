@@ -8,7 +8,7 @@ export default function NotFound() {
     <section className="brand-gradient flex flex-1 items-center py-24">
       <Container className="text-center">
         <span className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-2 border-ink bg-button">
-          <Rocket className="h-9 w-9 text-ink" aria-hidden="true" />
+          <Rocket className="h-9 w-9 text-button-ink" aria-hidden="true" />
         </span>
         <h1 className="mt-6 font-title text-5xl font-bold text-ink">404</h1>
         <p className="mt-3 text-xl font-semibold text-ink">Looks like this page drifted off course.</p>

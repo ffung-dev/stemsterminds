@@ -12,6 +12,10 @@
      doesn't read too dark/heavy against the cream background. */
   --ink: #67473c;
   --ink-soft: #986c5d;
+  /* Fixed (non-theme-switching) dark brown for text/icons on top of
+     --button, which intentionally stays the same bright yellow in both
+     themes — --ink alone isn't safe there since it flips light in dark mode. */
+  --button-ink: #67473c;
   --coral: #f85a52;
   --coral-hover: #e6473f;
   --teal: #a2d9de;
@@ -51,6 +55,7 @@
   --color-decoration: var(--decoration);
   --color-button: var(--button);
   --color-button-hover: var(--button-hover);
+  --color-button-ink: var(--button-ink);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-coral: var(--coral);

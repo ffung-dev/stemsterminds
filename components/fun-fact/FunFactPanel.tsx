@@ -87,7 +87,7 @@ export function FunFactPanel({
               aria-expanded={true}
               aria-label="Hide fun facts"
               data-testid="fun-fact-toggle"
-              className="absolute -right-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border-soft bg-button text-ink shadow-md transition-transform hover:scale-105"
+              className="absolute -right-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border-soft bg-button text-button-ink shadow-md transition-transform hover:scale-105"
             >
               <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             </button>
@@ -104,7 +104,7 @@ export function FunFactPanel({
             aria-expanded={false}
             aria-label="Show fun facts"
             data-testid="fun-fact-toggle"
-            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-r-full border border-l-0 border-border-soft bg-button text-ink shadow-md transition-transform hover:scale-105"
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-r-full border border-l-0 border-border-soft bg-button text-button-ink shadow-md transition-transform hover:scale-105"
           >
             <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </motion.button>
