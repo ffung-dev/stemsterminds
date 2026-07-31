@@ -24,6 +24,9 @@
   --surface: #ffffff;
   --surface-soft: var(--cream);
   --border-soft: #f0e2c4;
+
+  /* Third stop for .brand-gradient. */
+  --gradient-end: var(--teal-soft);
 }
 
 .dark {
@@ -44,6 +47,9 @@
   --surface: #2a2420;
   --surface-soft: #26211d;
   --border-soft: #40372e;
+
+  /* Warm ember red instead of teal, so the gradient stays yellow/red only. */
+  --gradient-end: #4a2620;
 }
 
 @theme inline {
