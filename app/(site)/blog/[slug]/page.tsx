@@ -3,12 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
 
+import { Citations } from "@/components/blog/Citations";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { CaptionedImage } from "@/components/ui/CaptionedImage";
 import { Container } from "@/components/ui/Container";
 import { PortableTextRenderer } from "@/components/ui/PortableTextRenderer";
-import { RoundedImage } from "@/components/ui/RoundedImage";
 import { getAllBlogPosts, getBlogPostBySlug, getBlogSlugs } from "@/lib/sanity/fetch";
 import { buildMetadata } from "@/lib/seo";
 import { estimateReadingTime, formatDate } from "@/lib/utils";
@@ -70,7 +71,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Container className="max-w-3xl">
         <Breadcrumbs items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
 
-        <RoundedImage image={post.heroImage} alt={post.title} className="aspect-[16/9] w-full" priority />
+        <CaptionedImage image={post.heroImage} alt={post.title} className="aspect-[16/9] w-full" priority />
 
         <h1 className="mt-8 font-title text-3xl font-bold text-ink sm:text-4xl">{post.title}</h1>
 
@@ -108,6 +109,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             ))}
           </div>
         )}
+
+        <Citations citations={post.citations} />
 
         <RelatedPosts posts={related} />
 
