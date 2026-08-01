@@ -13,5 +13,11 @@ export const imageWithAlt = defineType({
       description: "Describe the image for screen readers and accessibility.",
       validation: (rule) => rule.required(),
     }),
+    defineField({
+      name: "caption",
+      title: "Caption (optional)",
+      type: "string",
+      description: "Shown beneath the image when it's displayed on the site.",
+    }),
   ],
 });

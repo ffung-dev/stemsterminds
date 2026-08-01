@@ -217,6 +217,11 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("stem-tips"),
     tags: ["science", "at-home", "elementary"],
     featured: true,
+    citations: [
+      "National Science Teaching Association. (2024). Elementary science investigations: A guide for out-of-school learning.",
+      "Chen, A. (2025). \"Kitchen chemistry: Low-cost experiments for young learners.\" Journal of Informal STEM Education, 12(3), 45–58.",
+    ],
+    heroImage: { url: "", alt: "A child mixing a baking soda volcano experiment", width: 1200, height: 675, caption: "A STEMsterMinds workshop participant testing the baking soda volcano." },
     body: [
       ...paragraphs(
         "You don't need a laboratory to spark a love of science — just a few household items and some curiosity. Here are five experiments our volunteers love running with elementary students."
@@ -240,6 +245,7 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("organization-updates"),
     tags: ["team", "internship"],
     featured: true,
+    citations: [],
     body: [
       ...paragraphs(
         "Every summer, STEMsterMinds welcomes a new cohort of student interns who help build curriculum, run workshops, and grow our online community. This year's cohort is our biggest yet."
@@ -260,6 +266,7 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("student-stories"),
     tags: ["equity", "inspiration"],
     featured: true,
+    citations: [],
     body: [
       ...paragraphs(
         "When students don't see people who look like them in science and technology, it can quietly shape what they believe is possible for their own future. Representation isn't just a nice-to-have — it's foundational."
@@ -285,6 +292,7 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("opportunities"),
     tags: ["scholarships", "engineering"],
     featured: false,
+    citations: [],
     body: paragraphs(
       "Paying for an engineering degree can feel overwhelming, but there are more scholarship opportunities out there than most students realize. We rounded up ten of our favorites, ranging from need-based awards to competitions that reward hands-on projects.",
       "Bookmark this list, set reminders for application deadlines, and don't be afraid to apply to more than a few — many students are surprised how much funding is available for the effort of a well-written essay."
@@ -301,6 +309,7 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("organization-updates"),
     tags: ["events", "robotics"],
     featured: false,
+    citations: [],
     body: paragraphs(
       "From sourcing robotics kits to training volunteer facilitators, planning a workshop for 50 students takes months of preparation. Here's a peek behind the curtain at how our team pulls it off.",
       "The biggest lesson we've learned: always have a backup activity ready in case the technology doesn't cooperate."
@@ -317,6 +326,7 @@ export const mockBlogPosts: BlogPost[] = [
     category: findCategory("stem-tips"),
     tags: ["coding", "leadership"],
     featured: false,
+    citations: [],
     body: paragraphs(
       "Starting a coding club is one of the highest-impact things a student can do for their school community. Here's how to find a faculty advisor, recruit members, and plan your first few meetings.",
       "Don't worry about being an expert coder yourself — the best clubs are led by curious organizers who are willing to learn alongside their members."

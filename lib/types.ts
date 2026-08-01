@@ -5,6 +5,7 @@ export interface ImageData {
   alt: string;
   width: number;
   height: number;
+  caption?: string;
 }
 
 export interface SeoData {
@@ -89,6 +90,7 @@ export interface BlogPost {
   category?: Category;
   tags: string[];
   featured?: boolean;
+  citations: string[];
   seo?: SeoData;
 }
 

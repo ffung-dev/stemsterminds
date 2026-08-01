@@ -4,9 +4,15 @@ const imageFragment = /* groq */ `{
   "url": asset->url,
   "width": asset->metadata.dimensions.width,
   "height": asset->metadata.dimensions.height,
-  "alt": alt
+  "alt": alt,
+  "caption": caption
 }`;
 
+// Untouched array/portable-text fields come back as null (not []) from
+// Sanity, which crashes downstream .map()/.some()/<PortableText> calls.
+// Every array-shaped field below is wrapped in coalesce(..., []) so the app
+// always gets an array, never null, regardless of what an editor has (or
+// hasn't) filled in.
 const seoFragment = /* groq */ `{
   seoTitle,
   metaDescription,
@@ -16,7 +22,7 @@ const seoFragment = /* groq */ `{
     "height": asset->metadata.dimensions.height
   },
   canonicalUrl,
-  keywords
+  "keywords": coalesce(keywords, [])
 }`;
 
 const authorFragment = /* groq */ `{
@@ -42,10 +48,11 @@ const blogPostFragment = /* groq */ `{
   "updatedAt": _updatedAt,
   "heroImage": heroImage${imageFragment},
   excerpt,
-  body,
+  "body": coalesce(body, []),
   "category": category->${categoryFragment},
-  tags,
+  "tags": coalesce(tags, []),
   featured,
+  "citations": coalesce(citations, []),
   "seo": seo${seoFragment}
 }`;
 
@@ -56,81 +63,81 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   contactEmail,
   mailingAddress,
   officeHours,
-  applicationLinks,
-  socialLinks,
-  funFacts,
+  "applicationLinks": coalesce(applicationLinks, []),
+  "socialLinks": coalesce(socialLinks, []),
+  "funFacts": coalesce(funFacts, []),
   "logo": logo${imageFragment}
 }`;
 
-export const navigationQuery = groq`*[_type == "navigation"][0].items`;
+export const navigationQuery = groq`coalesce(*[_type == "navigation"][0].items, [])`;
 
 export const footerQuery = groq`*[_type == "footer"][0]{
-  quickLinks,
+  "quickLinks": coalesce(quickLinks, []),
   copyrightText
 }`;
 
 export const homepageQuery = groq`*[_type == "homepage"][0]{
   heroTitle,
   heroSubtitle,
-  "team": team[]->{
+  "team": coalesce(team[]->{
     "_id": _id,
     name,
     role,
     bio,
     "photo": photo${imageFragment}
-  },
-  "featuredBlogPosts": featuredBlogPosts[]->${blogPostFragment},
-  "quickStats": quickStats[]->{
+  }, []),
+  "featuredBlogPosts": coalesce(featuredBlogPosts[]->${blogPostFragment}, []),
+  "quickStats": coalesce(quickStats[]->{
     "_id": _id,
     label,
     value
-  },
+  }, []),
   ctaHeading,
   ctaBody,
   ctaButtonText,
   ctaButtonLink,
-  "galleryImages": galleryImages[]->{
+  "galleryImages": coalesce(galleryImages[]->{
     "_id": _id,
     "image": image${imageFragment},
     caption
-  },
+  }, []),
   "seo": seo${seoFragment}
 }`;
 
 export const aboutPageQuery = groq`*[_type == "aboutPage"][0]{
   heroTitle,
-  description,
+  "description": coalesce(description, []),
   visionTitle,
   visionBody,
-  "values": values[]{
+  "values": coalesce(values[]{
     "_key": _key,
     title,
     description
-  },
+  }, []),
   "seo": seo${seoFragment}
 }`;
 
 export const volunteerPageQuery = groq`*[_type == "volunteerPage"][0]{
   heroTitle,
   introText,
-  "opportunities": opportunities[]{
+  "opportunities": coalesce(opportunities[]{
     "_key": _key,
     title,
     description
-  },
-  "whyVolunteer": whyVolunteer[]{
+  }, []),
+  "whyVolunteer": coalesce(whyVolunteer[]{
     "_key": _key,
     title,
     description
-  },
+  }, []),
   applicationCtaHeading,
   applicationCtaText,
   applicationLink,
-  "faqs": faqs[]->{
+  "faqs": coalesce(faqs[]->{
     "_key": _id,
     question,
     answer
-  },
+  }, []),
   "seo": seo${seoFragment}
 }`;
 
@@ -149,10 +156,10 @@ export const allEventsQuery = groq`*[_type == "event"] | order(date desc){
   time,
   location,
   shortDescription,
-  fullDescription,
-  "schedule": schedule[]{ "_key": _key, time, title, description },
-  "speakers": speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} },
-  "gallery": gallery[]${imageFragment},
+  "fullDescription": coalesce(fullDescription, []),
+  "schedule": coalesce(schedule[]{ "_key": _key, time, title, description }, []),
+  "speakers": coalesce(speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} }, []),
+  "gallery": coalesce(gallery[]${imageFragment}, []),
   registrationLink,
   registrationStatus,
   "seo": seo${seoFragment}
@@ -167,10 +174,10 @@ export const eventBySlugQuery = groq`*[_type == "event" && slug.current == $slug
   time,
   location,
   shortDescription,
-  fullDescription,
-  "schedule": schedule[]{ "_key": _key, time, title, description },
-  "speakers": speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} },
-  "gallery": gallery[]${imageFragment},
+  "fullDescription": coalesce(fullDescription, []),
+  "schedule": coalesce(schedule[]{ "_key": _key, time, title, description }, []),
+  "speakers": coalesce(speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} }, []),
+  "gallery": coalesce(gallery[]${imageFragment}, []),
   registrationLink,
   registrationStatus,
   "seo": seo${seoFragment}

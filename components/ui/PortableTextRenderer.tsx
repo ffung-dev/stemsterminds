@@ -7,7 +7,7 @@ import { urlFor } from "@/lib/sanity/image";
 
 import { RoundedImage } from "./RoundedImage";
 
-type ImageBlockValue = SanityImage & { alt?: string };
+type ImageBlockValue = SanityImage & { alt?: string; caption?: string };
 type VideoBlockValue = { url: string };
 
 const components: PortableTextComponents = {
@@ -21,12 +21,15 @@ const components: PortableTextComponents = {
   },
   types: {
     imageWithAlt: ({ value }: { value: ImageBlockValue }) => (
-      <div className="my-6">
+      <figure className="my-6">
         <RoundedImage
           image={{ url: urlFor(value).width(1200).url(), alt: value.alt ?? "", width: 1200, height: 800 }}
           className="aspect-video w-full"
         />
-      </div>
+        {value.caption && (
+          <figcaption className="mt-2 text-center text-sm italic text-ink-soft">{value.caption}</figcaption>
+        )}
+      </figure>
     ),
     embeddedVideo: ({ value }: { value: VideoBlockValue }) => (
       <div className="my-6 aspect-video overflow-hidden rounded-2xl">

@@ -44,6 +44,14 @@ export const blogPost = defineType({
       group: "meta",
     }),
     defineField({ name: "featured", title: "Featured on Homepage", type: "boolean", initialValue: false, group: "meta" }),
+    defineField({
+      name: "citations",
+      title: "Citations",
+      description: "Sources and references for this article. Each one is shown as a separate, numbered citation in its own block beneath the article.",
+      type: "array",
+      of: [{ type: "text", rows: 2 }],
+      group: "content",
+    }),
     defineField({ name: "seo", title: "SEO", type: "seo", group: "seo" }),
   ],
   orderings: [
