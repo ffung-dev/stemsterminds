@@ -22,15 +22,6 @@ export function formatDateShort(dateString: string) {
   });
 }
 
-export function formatTime(time: string) {
-  const [hoursStr, minutesStr] = time.split(":");
-  const hours = Number(hoursStr);
-  const minutes = Number(minutesStr);
-  const period = hours >= 12 ? "PM" : "AM";
-  const hours12 = hours % 12 === 0 ? 12 : hours % 12;
-  return `${hours12}:${String(minutes).padStart(2, "0")} ${period}`;
-}
-
 export function isEventUpcoming(dateString: string) {
   const eventDate = new Date(dateString);
   const now = new Date();

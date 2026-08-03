@@ -153,15 +153,12 @@ export const allEventsQuery = groq`*[_type == "event"] | order(date desc){
   "slug": slug.current,
   "headerImage": headerImage${imageFragment},
   date,
-  time,
   location,
   shortDescription,
   "fullDescription": coalesce(fullDescription, []),
-  "schedule": coalesce(schedule[]{ "_key": _key, time, title, description }, []),
   "speakers": coalesce(speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} }, []),
   "gallery": coalesce(gallery[]${imageFragment}, []),
-  registrationLink,
-  registrationStatus,
+  moreInfoLink,
   "seo": seo${seoFragment}
 }`;
 
@@ -171,15 +168,12 @@ export const eventBySlugQuery = groq`*[_type == "event" && slug.current == $slug
   "slug": slug.current,
   "headerImage": headerImage${imageFragment},
   date,
-  time,
   location,
   shortDescription,
   "fullDescription": coalesce(fullDescription, []),
-  "schedule": coalesce(schedule[]{ "_key": _key, time, title, description }, []),
   "speakers": coalesce(speakers[]{ "_key": _key, name, bio, "photo": photo${imageFragment} }, []),
   "gallery": coalesce(gallery[]${imageFragment}, []),
-  registrationLink,
-  registrationStatus,
+  moreInfoLink,
   "seo": seo${seoFragment}
 }`;
 

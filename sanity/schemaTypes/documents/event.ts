@@ -8,7 +8,7 @@ export const event = defineType({
   icon: schemaIcon("calendar"),
   groups: [
     { name: "content", title: "Content", default: true },
-    { name: "schedule", title: "Schedule & Speakers" },
+    { name: "speakers", title: "Speakers" },
     { name: "gallery", title: "Gallery" },
     { name: "seo", title: "SEO" },
   ],
@@ -17,7 +17,6 @@ export const event = defineType({
     defineField({ name: "slug", title: "Slug", type: "slug", options: { source: "title" }, group: "content", validation: (rule) => rule.required() }),
     defineField({ name: "headerImage", title: "Header Image", type: "imageWithAlt", group: "content" }),
     defineField({ name: "date", title: "Date", type: "date", group: "content", validation: (rule) => rule.required() }),
-    defineField({ name: "time", title: "Time", type: "string", group: "content", description: '24-hour format, e.g. "14:00"' }),
     defineField({ name: "location", title: "Location", type: "string", group: "content" }),
     defineField({ name: "shortDescription", title: "Short Description", type: "text", rows: 2, group: "content", validation: (rule) => rule.required().max(200) }),
     defineField({
@@ -37,27 +36,10 @@ export const event = defineType({
       ],
     }),
     defineField({
-      name: "schedule",
-      title: "Schedule",
-      type: "array",
-      group: "schedule",
-      of: [
-        {
-          type: "object",
-          name: "scheduleItem",
-          fields: [
-            defineField({ name: "time", title: "Time", type: "string" }),
-            defineField({ name: "title", title: "Title", type: "string" }),
-            defineField({ name: "description", title: "Description", type: "text", rows: 2 }),
-          ],
-        },
-      ],
-    }),
-    defineField({
       name: "speakers",
       title: "Speakers (optional)",
       type: "array",
-      group: "schedule",
+      group: "speakers",
       of: [
         {
           type: "object",
@@ -72,26 +54,17 @@ export const event = defineType({
     }),
     defineField({
       name: "gallery",
-      title: "Gallery",
+      title: "Gallery (optional)",
       type: "array",
       group: "gallery",
       of: [{ type: "imageWithAlt" }],
     }),
-    defineField({ name: "registrationLink", title: "Registration Link", type: "url", group: "content" }),
     defineField({
-      name: "registrationStatus",
-      title: "Registration Status",
-      type: "string",
+      name: "moreInfoLink",
+      title: "More Info Link",
+      type: "url",
       group: "content",
-      options: {
-        list: [
-          { title: "Open", value: "open" },
-          { title: "Full", value: "full" },
-          { title: "Closed", value: "closed" },
-          { title: "Cancelled", value: "cancelled" },
-        ],
-      },
-      initialValue: "open",
+      description: "Optional link for people to learn more about this event — a dedicated post, sign-up form, social media, or anything else relevant.",
     }),
     defineField({ name: "seo", title: "SEO", type: "seo", group: "seo" }),
   ],

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CalendarDays, Clock, MapPin } from "lucide-react";
+import { ArrowLeft, CalendarDays, MapPin } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { Button } from "@/components/ui/Button";
@@ -10,7 +10,7 @@ import { PortableTextRenderer } from "@/components/ui/PortableTextRenderer";
 import { RoundedImage } from "@/components/ui/RoundedImage";
 import { getEventBySlug, getEventSlugs } from "@/lib/sanity/fetch";
 import { buildMetadata } from "@/lib/seo";
-import { formatDate, formatTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const slugs = await getEventSlugs();
@@ -38,14 +38,11 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
     "@context": "https://schema.org",
     "@type": "Event",
     name: event.title,
-    startDate: `${event.date}T${event.time || "00:00"}`,
+    startDate: event.date,
     location: { "@type": "Place", name: event.location },
     description: event.shortDescription,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-    eventStatus:
-      event.registrationStatus === "cancelled"
-        ? "https://schema.org/EventCancelled"
-        : "https://schema.org/EventScheduled",
+    eventStatus: "https://schema.org/EventScheduled",
     url: `${siteUrl}/events/${event.slug}`,
   };
 
@@ -64,10 +61,6 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
             {formatDate(event.date)}
           </span>
           <span className="flex items-center gap-1.5">
-            <Clock className="h-4 w-4" aria-hidden="true" />
-            {formatTime(event.time)}
-          </span>
-          <span className="flex items-center gap-1.5">
             <MapPin className="h-4 w-4" aria-hidden="true" />
             {event.location}
           </span>
@@ -76,21 +69,6 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
         <div className="mt-8">
           <PortableTextRenderer value={event.fullDescription} />
         </div>
-
-        {event.schedule.length > 0 && (
-          <section className="mt-10">
-            <h2 className="font-header text-xl font-bold text-ink">Schedule</h2>
-            <ol className="mt-4 space-y-4 border-l-2 border-decoration pl-5">
-              {event.schedule.map((item) => (
-                <li key={item._key}>
-                  <p className="text-sm font-semibold text-coral">{item.time}</p>
-                  <p className="font-semibold text-ink">{item.title}</p>
-                  {item.description && <p className="text-sm text-ink-soft">{item.description}</p>}
-                </li>
-              ))}
-            </ol>
-          </section>
-        )}
 
         {event.speakers.length > 0 && (
           <section className="mt-10">
@@ -124,9 +102,9 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
         )}
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          {event.registrationLink && event.registrationStatus === "open" && (
-            <Button href={event.registrationLink} size="lg">
-              Register Now
+          {event.moreInfoLink && (
+            <Button href={event.moreInfoLink} size="lg">
+              Learn More
             </Button>
           )}
           <Link href="/events" className="inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-coral">

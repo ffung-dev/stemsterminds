@@ -13,13 +13,14 @@ test.describe("Events page", () => {
     await expect(page.getByRole("link", { name: /Coding for Beginners/ })).toHaveCount(0);
   });
 
-  test("registration status badges render correctly", async ({ page }) => {
+  test("event cards show Learn More when a more-info link is set, View Details otherwise", async ({ page }) => {
     await page.goto("/events");
-    await expect(page.getByTestId("event-status").filter({ hasText: "Registration Open" }).first()).toBeVisible();
-    await expect(page.getByTestId("event-status").filter({ hasText: "Full" }).first()).toBeVisible();
+    const pythonCard = page.getByRole("link", { name: /Coding for Beginners: Python Workshop/ }).first();
+    await expect(pythonCard.locator("..").getByRole("link", { name: "Learn More" })).toBeVisible();
 
     await page.getByTestId("events-tab-past").click();
-    await expect(page.getByTestId("event-status").filter({ hasText: "Cancelled" }).first()).toBeVisible();
+    const robotics = page.getByRole("link", { name: /Intro to Robotics Workshop/ }).first();
+    await expect(robotics.locator("..").getByRole("link", { name: "View Details" })).toBeVisible();
   });
 
   test("search filters events by title", async ({ page }) => {

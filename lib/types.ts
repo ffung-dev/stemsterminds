@@ -94,13 +94,6 @@ export interface BlogPost {
   seo?: SeoData;
 }
 
-export interface ScheduleItem {
-  _key: string;
-  time: string;
-  title: string;
-  description?: string;
-}
-
 export interface Speaker {
   _key: string;
   name: string;
@@ -108,23 +101,18 @@ export interface Speaker {
   photo?: ImageData;
 }
 
-export type RegistrationStatus = "open" | "closed" | "full" | "cancelled";
-
 export interface EventItem {
   _id: string;
   title: string;
   slug: string;
   headerImage?: ImageData;
   date: string;
-  time: string;
   location: string;
   shortDescription: string;
   fullDescription: PortableTextBlock[];
-  schedule: ScheduleItem[];
   speakers: Speaker[];
   gallery: ImageData[];
-  registrationLink?: string;
-  registrationStatus: RegistrationStatus;
+  moreInfoLink?: string;
   seo?: SeoData;
 }
 
