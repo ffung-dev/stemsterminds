@@ -18,7 +18,7 @@ export const mockNavigation: NavItem[] = [
   { _key: "nav-about", label: "About", href: "/about" },
   { _key: "nav-volunteer", label: "Volunteer", href: "/volunteer" },
   { _key: "nav-events", label: "Events", href: "/events" },
-  { _key: "nav-blog", label: "Blog", href: "/blog" },
+  { _key: "nav-blog", label: "Research", href: "/blog" },
   { _key: "nav-contact", label: "Contact", href: "/contact" },
 ];
 

@@ -16,7 +16,7 @@ export default async function BlogPage() {
   return (
     <>
       <PageHero
-        title="STEMsterMinds Blog"
+        title="STEMsterMinds Research Articles"
         description="At STEMsterMinds, we believe that the future is full of possibilities for young minds exploring Science, Technology, Engineering, and Mathematics. Our blog shares educational articles, STEM opportunities, project ideas, organization updates, and stories from our community."
       />
       <section className="py-16 sm:py-20">
