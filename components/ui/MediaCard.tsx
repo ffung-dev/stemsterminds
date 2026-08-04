@@ -14,13 +14,16 @@ export function MediaCard({
   media,
   children,
   className,
+  ...rest
 }: {
   media: ReactNode;
   children: ReactNode;
   className?: string;
+  [key: `data-${string}`]: string | undefined;
 }) {
   return (
     <motion.div
+      {...rest}
       whileHover={{ y: -6, boxShadow: "0 22px 45px -22px rgba(63,57,57,0.3)" }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       className={cx("flex flex-col rounded-2xl border border-border-soft bg-surface shadow-sm", className)}

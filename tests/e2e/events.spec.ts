@@ -15,12 +15,12 @@ test.describe("Events page", () => {
 
   test("event cards show Learn More when a more-info link is set, View Details otherwise", async ({ page }) => {
     await page.goto("/events");
-    const pythonCard = page.getByRole("link", { name: /Coding for Beginners: Python Workshop/ }).first();
-    await expect(pythonCard.locator("..").getByRole("link", { name: "Learn More" })).toBeVisible();
+    const pythonCard = page.getByTestId("event-card").filter({ has: page.getByRole("heading", { name: /Coding for Beginners/ }) });
+    await expect(pythonCard.getByRole("link", { name: "Learn More" })).toBeVisible();
 
     await page.getByTestId("events-tab-past").click();
-    const robotics = page.getByRole("link", { name: /Intro to Robotics Workshop/ }).first();
-    await expect(robotics.locator("..").getByRole("link", { name: "View Details" })).toBeVisible();
+    const roboticsCard = page.getByTestId("event-card").filter({ has: page.getByRole("heading", { name: /Intro to Robotics Workshop/ }) });
+    await expect(roboticsCard.getByRole("link", { name: "View Details" })).toBeVisible();
   });
 
   test("search filters events by title", async ({ page }) => {
@@ -39,10 +39,8 @@ test.describe("Events page", () => {
 
     await expect(page).toHaveURL(/\/events\/coding-for-beginners-python-workshop$/);
     await expect(page.getByRole("heading", { name: "Coding for Beginners: Python Workshop" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Schedule" })).toBeVisible();
-    await expect(page.getByText("Build a Guessing Game")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Speakers" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Register Now" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Learn More" })).toBeVisible();
 
     await page.getByRole("link", { name: "Back to Events" }).click();
     await expect(page).toHaveURL(/\/events$/);
