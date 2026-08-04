@@ -17,7 +17,7 @@ test.describe("Global navigation", () => {
     await nav.getByRole("link", { name: "Events" }).click();
     await expect(page).toHaveURL(/\/events$/);
 
-    await nav.getByRole("link", { name: "Blog", exact: true }).click();
+    await nav.getByRole("link", { name: "Research", exact: true }).click();
     await expect(page).toHaveURL(/\/blog$/);
 
     await nav.getByRole("link", { name: "Contact" }).click();
@@ -116,6 +116,6 @@ test.describe("Global navigation", () => {
     await page.goto("/");
     const footer = page.locator("footer");
     await expect(footer.getByText("STEMsterMinds").first()).toBeVisible();
-    await expect(footer.getByRole("link", { name: "Blog", exact: true })).toBeVisible();
+    await expect(footer.getByRole("link", { name: "Research", exact: true })).toBeVisible();
   });
 });
