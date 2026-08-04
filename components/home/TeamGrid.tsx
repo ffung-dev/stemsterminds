@@ -11,9 +11,8 @@ export function TeamGrid({ team }: { team: TeamMember[] }) {
     <section className="py-16 sm:py-20">
       <Container>
         <SectionHeading
-          eyebrow="Our People"
-          title="Meet the Team"
-          description="The students and volunteers leading STEMsterMinds."
+          title="Our Leaders"
+          description="Meet the executives of STEMsterMinds!"
         />
         <div className="mt-10 flex flex-wrap justify-center gap-6">
           {team.map((member, index) => (

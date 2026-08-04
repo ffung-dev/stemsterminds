@@ -11,7 +11,7 @@ test.describe("Home page", () => {
     await expect(page.getByRole("link", { name: "Leadership Application" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Summer Internship Application" })).toBeVisible();
 
-    await expect(page.getByRole("heading", { name: "Meet the Team" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Our Leaders" })).toBeVisible();
     await expect(page.getByText("Priya Nair")).toBeVisible();
     await expect(page.getByText("Founder & President")).toBeVisible();
 
