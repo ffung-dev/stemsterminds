@@ -8,6 +8,7 @@ import type { EventItem } from "@/lib/types";
 import { cx } from "@/lib/utils";
 
 import { EventCard } from "./EventCard";
+import { PastEventListItem } from "./PastEventListItem";
 
 type TabKey = "upcoming" | "past";
 
@@ -72,10 +73,16 @@ export function EventsExplorer({ upcoming, past }: { upcoming: EventItem[]; past
         <p className="mt-16 text-center text-ink-soft" data-testid="events-empty">
           No {tab} events {query ? "match your search." : "yet — check back soon!"}
         </p>
-      ) : (
+      ) : tab === "upcoming" ? (
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((event, index) => (
             <EventCard key={event._id} event={event} index={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-10 flex flex-col gap-4">
+          {filtered.map((event) => (
+            <PastEventListItem key={event._id} event={event} />
           ))}
         </div>
       )}
