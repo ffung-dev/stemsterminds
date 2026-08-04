@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
@@ -27,6 +27,9 @@ export function NavBar({
   const [lastPathname, setLastPathname] = useState(pathname);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const linkRefs = useRef(new Map<string, HTMLAnchorElement>());
+  const [indicator, setIndicator] = useState<{ left: number; width: number } | null>(null);
 
   // Close the mobile menu on navigation. Adjusting state during render
   // (rather than in an effect) avoids an extra post-navigation render.
@@ -61,34 +64,64 @@ export function NavBar({
     };
   }, [open]);
 
+  // Measure the active link's position/width and move a single persistent
+  // indicator span to it, rather than mounting/unmounting a layoutId'd span
+  // on whichever link is active — that approach can desync and pop instead
+  // of sliding when the unmount/mount don't land in the same commit.
+  useLayoutEffect(() => {
+    const activeItem = items.find((item) =>
+      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
+    );
+    const container = navRef.current;
+    const link = activeItem && linkRefs.current.get(activeItem._key);
+
+    function measure() {
+      if (!link || !container) {
+        setIndicator(null);
+        return;
+      }
+      const linkRect = link.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      setIndicator({ left: linkRect.left - containerRect.left, width: linkRect.width });
+    }
+
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [pathname, items]);
+
   return (
     <header className="sticky top-0 z-50 border-b border-border-soft bg-cream/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Logo organizationName={organizationName} logo={logo} />
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+        <nav ref={navRef} className="relative hidden items-center gap-1 md:flex" aria-label="Primary">
           {items.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item._key}
                 href={item.href}
+                ref={(el) => {
+                  if (el) linkRefs.current.set(item._key, el);
+                  else linkRefs.current.delete(item._key);
+                }}
                 className={cx(
-                  "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+                  "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
                   isActive ? "text-coral" : "text-ink hover:text-coral"
                 )}
               >
                 {item.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-coral"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
               </Link>
             );
           })}
+          {indicator && (
+            <motion.span
+              className="pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-coral"
+              animate={{ left: indicator.left + 16, width: indicator.width - 32 }}
+              transition={{ type: "spring", stiffness: 400, damping: 30 }}
+            />
+          )}
         </nav>
 
         <div className="flex items-center gap-2">
